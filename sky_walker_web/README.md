@@ -1,4 +1,4 @@
-# skywalker
+# sky_walker_web
 
 > A Vue.js project
 
