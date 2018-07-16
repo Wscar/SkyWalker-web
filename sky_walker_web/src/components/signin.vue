@@ -8,7 +8,7 @@
              <input type="text" placeholder="账号/邮箱/电话号码">
              <br>
              <input type="password" placeholder="密码">
-             <button>登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+             <button v-on:click="Signin">登&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;录</button>
          </div>
          <div class="signin_body_footer">
              <h2>
@@ -23,7 +23,36 @@
 </template>
 <script>
 export default {
-    
+    data(){
+        return{ 'result':'成功'}
+    },
+    methods:{
+        Signin(){
+            var params=new URLSearchParams();
+            params.append("username","yemobai");
+            params.append( "password","123");
+            params.append("client_id","pc");
+            params.append( "client_secret","yemobai");
+            params.append("grant_type","password");
+           this.$ajax.post("http://localhost:63894/connect/token",
+            params
+           , {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}
+           ).then(function(response){
+               console.log(response);
+           }).catch(function(error){
+               console.log(error);
+           })
+        },
+        SignIn2(){
+            this.$ajax.get("http://localhost:56454/api/user/1"
+               
+            ).then(function(response){
+                console.log(response);
+            }).catch(function(error){
+                console.log(error);
+            })
+        }
+    }
 }
 </script>
 <style>
